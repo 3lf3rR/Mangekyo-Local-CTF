@@ -12,6 +12,7 @@
 grep "Securinets" Chall.txt
 ```
 ⚠️ our flag format as we know **SecurinetsISTIC{...}**
+
 <img width="1908" height="243" alt="image" src="https://github.com/user-attachments/assets/86b40bf3-5ead-4719-9630-69a28fa033c4" />
 And you're done easy right ?
 
