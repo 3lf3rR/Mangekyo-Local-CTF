@@ -13,8 +13,8 @@ The cybersecurity club of the Higher Institute of Information and Communication 
 
 ## 🌐 Connect With Us
 
-- **📘 Facebook:** [SecuriNets ISTIC Facebook Page]([https://facebook.com/SecuriNetsISTIC](https://www.facebook.com/profile.php?id=61575887789253))
-- **📷 Instagram:** [@SecuriNetsISTIC]([https://instagram.com/SecuriNetsISTIC](https://www.instagram.com/securinets_istic))
+- **📘 Facebook:** [SecuriNets ISTIC Facebook Page](https://www.facebook.com/profile.php?id=61575887789253)
+- **📷 Instagram:** [@SecuriNetsISTIC](https://www.instagram.com/securinets_istic)
 - **💼 LinkedIn:** [SecuriNets ISTIC LinkedIn Page](https://linkedin.com/company/securinets-istic)
 
 ---
