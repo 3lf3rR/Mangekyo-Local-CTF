@@ -14,7 +14,7 @@ A simple welcome challenge where the goal is to find the correct key to unlock t
 
 The challenge page presents a form asking for a key to start the journey.
 
-![Challenge description and points](../assets/marhbe_bik_chall.png)
+![Challenge description and points](/Web/assets/marhbe_bik_chall.png)
 
 ---
 
