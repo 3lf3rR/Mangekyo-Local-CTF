@@ -11,56 +11,58 @@ Easy
 ## Description
 
 The admin of this website has a secret hidden in his dashboard.
+
 But… are you **him**?
+
+Players are given only a login page and are told that the flag is accessible
+**only if they manage to log in as the admin user**.
 
 ![Challenge description and points](/Web/assets/sqli1_chall.png)
 
 ---
 
-## Analysis
+## Initial Observation (Black‑Box)
 
-The application is a Flask web app backed by an SQLite database.
-Users must log in to access the dashboard.
+The application provides a classic login form with:
+- a username field
+- a password field
 
-Inspecting the login logic in `app.py` reveals the following SQL query:
+Trying random credentials fails, but testing common SQL injection payloads
+reveals abnormal behavior.
 
-```python
-query = f"SELECT username FROM users WHERE username = '{username}' AND password = '{password}'"
-```
-
-User input is directly concatenated into the SQL query without any sanitization or parameterized queries.
-This makes the application **vulnerable to SQL Injection**.
-
----
-
-## Database Insight
-
-From `db.py`, we know that an `admin` user exists.
-However, logging in as a normal user does not reveal the flag.
-
----
-
-## First Attempt (Guest Bypass)
-
-A common SQLi payload such as:
+For example, using the following payload:
 
 ```
 ' OR 1=1--
 ```
 
-Successfully bypasses authentication, but logs us in as **guest** only.
+allows bypassing authentication, but the dashboard shows:
+
+> *You are not admin. No flag for you*
 
 ![Guest access](guest.png)
 
-This happens because the query returns the first matching row, which is not the admin user.
+This indicates:
+- Authentication was bypassed
+- But the **role matters**
+- The flag is shown **only for the admin user**
 
 ---
 
-## Exploitation (Admin Bypass)
+## Exploitation Strategy
 
-To gain admin access, the injected payload must explicitly return the **admin** user.
+Since the application distinguishes users by **username**, the goal is not just
+to bypass authentication, but to **force the session to log in as `admin`**.
 
-### Payload used in the username field:
+This means our payload must:
+- Bypass the password check
+- Explicitly select the `admin` user
+
+---
+
+## Successful Payload
+
+Using the following payload in the **username field**:
 
 ```
 admin'--
@@ -68,21 +70,16 @@ admin'--
 
 The password field can contain **any value**.
 
-This results in the following SQL query:
+![Exploit payload](exploit.png)
 
-```sql
-SELECT username FROM users WHERE username = 'admin'--' AND password = '...'
-```
-
-The password check is commented out, and the application logs us in as `admin`.
-
-![Successful exploit](exploit.png)
+This forces the backend to treat the user as `admin`, successfully bypassing
+authentication **and** gaining admin privileges.
 
 ---
 
-## Flag
+## Result
 
-Once logged in as **admin**, the dashboard displays the flag:
+After logging in as admin, the dashboard reveals the flag:
 
 ![Solved challenge](solved.png)
 
@@ -92,13 +89,30 @@ SecurinetsISTIC{SQLi_Inj3ction_s0_common!!}
 
 ---
 
+## Behind the Scenes (Source Code Explanation)
+
+Although players do **not** have access to the source code during the challenge,
+reviewing it afterward explains why the exploit works.
+
+The login query is built like this:
+
+```python
+query = f"SELECT username FROM users WHERE username = '{username}' AND password = '{password}'"
+```
+
+User input is directly concatenated into the SQL query without sanitization.
+The comment sequence (`--`) disables the password check entirely.
+
+---
+
 ## Conclusion
 
-This challenge demonstrates a classic SQL Injection authentication bypass.
+This challenge demonstrates a classic **authentication‑bypass SQL injection**.
 
 Key lessons:
-- Never trust user input
-- Never build SQL queries using string concatenation
-- Always use parameterized queries or ORM protections
+- Authentication bypass ≠ privilege escalation
+- Always test role‑based logic
+- Never concatenate user input into SQL queries
+- Parameterized queries prevent this entirely
 
-A fundamental vulnerability every web security beginner should master 🔥
+A foundational SQLi challenge that every beginner should master 🔥
