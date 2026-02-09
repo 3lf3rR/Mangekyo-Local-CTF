@@ -91,8 +91,6 @@ SecurinetsISTIC{SQLi_Inj3ction_s0_common!!}
 
 ## Behind the Scenes (Source Code Explanation)
 
-Although players do **not** have access to the source code during the challenge,
-reviewing it afterward explains why the exploit works.
 
 The login query is built like this:
 
@@ -102,6 +100,13 @@ query = f"SELECT username FROM users WHERE username = '{username}' AND password 
 
 User input is directly concatenated into the SQL query without sanitization.
 The comment sequence (`--`) disables the password check entirely.
+
+
+This results in the following SQL query:
+
+```sql
+SELECT username FROM users WHERE username = 'admin'--' AND password = '...'
+```
 
 ---
 
