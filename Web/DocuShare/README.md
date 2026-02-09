@@ -97,7 +97,7 @@ We manually navigate to:
 
 This page lists **many notes**, all accessible without any access control.
 
-![Abdessattar notes](abdessattar.png)
+![Abdessattar notes](abdesattar.png)
 
 This is a classic **IDOR (Insecure Direct Object Reference)** vulnerability:
 - User-controlled identifiers are used directly in URLs
