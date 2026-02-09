@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}{{ article.title }} — BlueWave{% endblock %}
+{% block content %}
+  <div class="card">
+    <h2>{{ article.title }}</h2>
+    <small class="muted">By {{ article.author }} — {{ article.date }}</small>
+    <div class="article-body">{{ article.content|safe }}</div>
+    <p><a href="{{ url_for('index') }}">← Back to articles</a></p>
+  </div>
+{% endblock %}

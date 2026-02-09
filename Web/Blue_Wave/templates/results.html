@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}Search results — BlueWave{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-md-10">
+        <div class="card p-4">
+          <div class="d-flex align-items-start justify-content-between mb-3">
+            <div>
+              <h4 class="mb-1">Results for: <small class="text-muted">{{ q }}</small></h4>
+              <div class="text-muted">{{ matches|length }} article(s) found</div>
+            </div>
+            <div class="text-end">
+              <a href="{{ url_for('search') }}" class="btn btn-sm btn-outline-secondary">Refine search</a>
+            </div>
+          </div>
+
+          {% if matches %}
+            <div class="list-group mb-3">
+              {% for m in matches %}
+                <a href="{{ url_for('article', aid=m.id) }}" class="list-group-item list-group-item-action mb-2">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ m.title }}</h5>
+                    <small class="text-muted">{{ m.date }}</small>
+                  </div>
+                  <p class="mb-1 text-muted">By {{ m.author }}</p>
+                  <small class="text-body-secondary">{{ m.excerpt }}</small>
+                </a>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-warning">No articles matched your query.</div>
+          {% endif %}
+
+          <hr>
+
+          <div>
+            <h5 class="mb-2">Preview</h5>
+            <div class="panel">
+              <div class="preview">{{ rendered|safe }}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

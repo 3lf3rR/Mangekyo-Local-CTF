@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Search — BlueWave{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="search-hero p-5 rounded-4 shadow-sm">
+          <div class="d-flex align-items-center mb-3">
+            <h2 class="h4 mb-0 me-3">Search</h2>
+            <small class="text-muted">Find articles</small>
+          </div>
+
+          <form method="post" action="{{ url_for('search') }}" class="position-relative">
+            <div class="input-group input-group-lg shadow-sm rounded-pill overflow-hidden">
+              <span class="input-group-text bg-white border-0 ps-4 pe-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0d6efd" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 0a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                </svg>
+              </span>
+              <input id="q" name="q" class="form-control border-0 form-control-lg" placeholder="Search articles, topics or authors..." aria-label="Search" required>
+              <button class="btn btn-primary rounded-pill ms-2 px-4" type="submit">Search</button>
+            </div>
+            <div class="form-text mt-2 text-muted">Press Enter or click Search</div>
+          </form>
+
+          <div class="mt-4 d-flex gap-2 flex-wrap">
+            <a class="chip" href="{{ url_for('index') }}">All articles</a>
+            <a class="chip" href="{{ url_for('index') }}">Design</a>
+            <a class="chip" href="{{ url_for('index') }}">Data</a>
+            <a class="chip" href="{{ url_for('index') }}">Optimization</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

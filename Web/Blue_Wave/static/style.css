@@ -1,0 +1,213 @@
+:root{
+  --blue:#0d6efd;
+  --muted:#6c757d;
+  --bg:#f6fbff;
+  --card:#ffffff;
+  --shadow: 0 10px 30px rgba(11, 22, 39, 0.08);
+  --maxw:1100px;
+  --radius:14px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Global resets & base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:linear-gradient(180deg,#f7fbff 0%,var(--bg) 100%);
+  color:#0b1a2b;
+  margin:0;
+  padding:0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 18px;
+}
+
+/* Header */
+.site-header{
+  background:transparent;
+  padding:18px 0;
+  border-bottom: 1px solid rgba(13,110,253,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(4px);
+}
+.logo a{
+  text-decoration:none;
+  color:var(--blue);
+  font-weight:700;
+  font-size:20px;
+}
+.nav a{
+  margin-left:14px;
+  text-decoration:none;
+  color:#0b1a2b;
+  opacity:.95;
+}
+
+/* Hero (used on home) */
+.hero{
+  padding:20px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow: 0 8px 24px rgba(11,22,39,0.04);
+}
+
+/* Search hero / form */
+.search-hero{
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,255,255,0.98));
+  border-radius: 16px;
+  border: 1px solid rgba(13,110,253,0.06);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+/* Input group adjustments */
+.input-group .input-group-text{
+  border-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.9rem;
+  background: transparent;
+}
+.form-control{
+  background: transparent;
+  font-size: 1.05rem;
+  height: 56px;
+  padding-left: 0.9rem;
+  border: none !important; /* rely on input-group borders for cleaner look */
+  box-shadow: none;
+}
+.input-group .btn{
+  height: 48px;
+  align-self: center;
+  border-radius: 999px;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+/* Chips (quick links) */
+.chip{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(13,110,253,0.08);
+  color:var(--blue);
+  text-decoration:none;
+  font-size:0.9rem;
+  border:1px solid rgba(13,110,253,0.06);
+}
+
+/* Cards & panels */
+.card{
+  background:var(--card);
+  padding:16px;
+  border-radius:10px;
+  box-shadow: 0 8px 20px rgba(11,22,39,0.04);
+  margin-bottom:18px;
+}
+.panel{
+  background:#fbfdff;
+  padding:12px;
+  border-radius:8px;
+  margin-top:8px;
+  border:1px solid #eef6ff;
+}
+.preview{
+  background:#0b2446;
+  color:white;
+  padding:12px;
+  border-radius:6px;
+  min-height:40px;
+  white-space:pre-wrap;
+}
+
+/* Article grid: square cards */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  margin-top: 12px;
+}
+
+/* Make each .card a perfect square while allowing the body to layout vertically */
+.card-square {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  border: 1px solid rgba(13,110,253,0.06);
+  box-shadow: 0 8px 24px rgba(11,22,39,0.04);
+}
+.card-square .card-body{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  height: 100%;
+  padding: 18px;
+}
+.card-square .card-title{
+  font-size: 1.05rem;
+  margin: 0 0 .3rem 0;
+  color: #06203a;
+  line-height: 1.2;
+}
+.excerpt{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.35rem;
+  -webkit-line-clamp: 6;
+}
+.card-square .readmore{
+  border-radius: 999px;
+  padding: .45rem .9rem;
+}
+.card-square:hover,
+.card-square:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(11,22,39,0.08);
+}
+.card-square .meta small{
+  font-size: .82rem;
+  color: var(--muted);
+}
+
+/* Utility & small helpers */
+.muted{color:var(--muted);font-size:13px}
+button{cursor:pointer}
+input,button{font-size:14px}
+
+/* Footer */
+.site-footer{padding:20px 0;color:var(--muted);font-size:13px}
+
+/* Responsive tweaks */
+@media (max-width: 768px){
+  .wrap{padding:0 14px}
+  .card-square .card-body{padding:14px}
+}
+@media (max-width: 576px){
+  .input-group .btn{padding-left:14px;padding-right:14px}
+  .form-control{font-size:0.98rem; height:48px}
+  .search-hero{padding:18px}
+  .card-square{ aspect-ratio: 5 / 6; } /* slightly portrait on very small screens */
+  .articles-grid{ gap: 12px; }
+}
+
+/* Accessibility focus */
+a:focus, button:focus, input:focus{
+  outline: 3px solid rgba(13,110,253,0.12);
+  outline-offset: 2px;
+}
