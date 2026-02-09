@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Auth Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> Titan Gateways</h1>
+            <p class="status">System Status: <span class="online">ONLINE</span></p>
+        </header>
+
+        <main>
+            <div class="user-card">
+                <div class="avatar">👤</div>
+                <h2>Welcome, <span class="username">{{ username }}</span></h2>
+                <p class="message">{{ message }}</p>
+                
+                {% if flag %}
+                <div class="flag-box">
+                    <p>Access Granted. Flag found:</p>
+                    <code>{{ flag }}</code>
+                </div>
+                {% endif %}
+            </div>
+        </main>
+
+        <footer>
+            <p>Protected by HS256 Encryption v1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
