@@ -1,0 +1,17 @@
+version: '3'
+services:
+  chall7:
+    build: .
+    ports:
+      - 10007:10007
+    read_only: true
+    cap_drop:
+      - all
+              
+    restart: on-failure
+
+    deploy:
+        resources:
+            limits:
+              cpus: '0.2'
+              memory: 1000M

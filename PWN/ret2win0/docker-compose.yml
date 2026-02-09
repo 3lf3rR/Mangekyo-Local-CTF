@@ -1,0 +1,17 @@
+version: '3'
+services:
+  chall8:
+    build: .
+    ports:
+      - 10008:10008
+    read_only: true
+    cap_drop:
+      - all
+              
+    restart: on-failure
+
+    deploy:
+        resources:
+            limits:
+              cpus: '0.2'
+              memory: 1000M

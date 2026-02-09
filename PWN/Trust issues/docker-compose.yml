@@ -1,0 +1,17 @@
+version: '3'
+services:
+  chall5:
+    build: .
+    ports:
+      - 10005:10005
+    read_only: true
+    cap_drop:
+      - all
+              
+    restart: on-failure
+
+    deploy:
+        resources:
+            limits:
+              cpus: '0.2'
+              memory: 1000M
