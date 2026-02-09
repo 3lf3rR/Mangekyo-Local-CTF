@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SQL Injection Challenge</title>
+  <style>
+    body {
+      background: #0f1220;
+      font-family: Arial, sans-serif;
+      color: #eaeaf0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: #181b2e;
+      padding: 30px;
+      width: 360px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 170, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #00ffcc;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+      background: #0f1220;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #00ddb3;
+    }
+
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .hint {
+      margin-top: 15px;
+      font-size: 0.85em;
+      color: #aaa;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Login</h2>
+
+    <form method="post">
+      <input name="username" placeholder="username">
+      <input name="password" type="password" placeholder="password">
+      <button type="submit">Login</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+   
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    body {
+      background: #0f1220;
+      font-family: Arial, sans-serif;
+      color: #eaeaf0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: #181b2e;
+      padding: 30px;
+      width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 170, 0.15);
+      text-align: center;
+    }
+
+    h2 {
+      color: #00ffcc;
+    }
+
+    .flag {
+      background: #0f1220;
+      border: 1px dashed #00ffcc;
+      padding: 15px;
+      margin-top: 20px;
+      font-family: monospace;
+      color: #00ffcc;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+
+    .no-flag {
+      color: #ffcc00;
+      margin-top: 15px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Welcome {{ user }}</h2>
+
+    {% if is_admin %}
+      <p>Admin access granted ✅</p>
+      <div class="flag">{{ flag }}</div>
+    {% else %}
+      <p class="no-flag">You are not admin. No flag for you 🙂</p>
+    {% endif %}
+
+    <a href="/logout">Logout</a>
+  </div>
+
+</body>
+</html>
