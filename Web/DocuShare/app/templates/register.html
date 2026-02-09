@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2>Register</h2>
+    <form method="post" action="{{ url_for('register') }}">
+      <div class="mb-3">
+        <label class="form-label">Choose a username</label>
+        <input name="username" class="form-control" placeholder="newuser">
+      </div>
+      <button class="btn btn-success">Create account</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

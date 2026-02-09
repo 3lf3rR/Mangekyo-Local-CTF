@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3 shadow-sm">
+  <h3 class="h6 mb-2 text-break">{{ filename }}</h3>
+  {% if missing or content is none %}
+    <p class="text-muted">File not found or cannot be displayed.</p>
+  {% else %}
+    <pre class="mb-0">{{ content }}</pre>
+  {% endif %}
+  <div class="mt-3">
+    <a href="{{ url_for('get_file_by_username', username=username, filename=filename) }}" class="btn btn-sm btn-outline-contrast">Download / Raw</a>
+  </div>
+</div>
+{% endblock %}

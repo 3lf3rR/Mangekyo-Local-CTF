@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 shadow-sm">
+  <h2 class="h5 mb-3">Contact</h2>
+  {% if submitted %}
+    <p class="text-success">Thanks, {{ name }}. Your message was received.</p>
+  {% else %}
+    <form method="post" action="{{ url_for('contact') }}">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input name="name" class="form-control" placeholder="Your name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea name="message" class="form-control" rows="4"></textarea>
+      </div>
+      <button class="btn btn-contrast">Send</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

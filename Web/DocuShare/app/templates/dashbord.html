@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Welcome, <strong>{{ user }}</strong>. This is an overview.</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">Recent activity</div>
+      <ul class="list-group list-group-flush">
+        {% for a in recent_activity %}
+          <li class="list-group-item">{{ a.title }} <span class="text-muted float-end">{{ a.time }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">Quick actions</div>
+      <div class="card-body">
+        <a href="{{ url_for('myfiles') }}" class="btn btn-outline-primary">My Files</a>
+        <a href="{{ url_for('profile') }}" class="btn btn-outline-secondary">Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

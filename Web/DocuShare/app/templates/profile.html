@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 shadow-sm">
+  <div class="d-flex align-items-center mb-3">
+    <div class="me-3">
+      <img src="https://via.placeholder.com/96.png?text=Avatar" alt="avatar" class="rounded-circle">
+    </div>
+    <div>
+      <h3 class="h5 mb-0 text-capitalize">{{ profile.full_name }}</h3>
+      <div class="text-muted small">{{ profile.email }}</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <strong>Role</strong>
+    <div class="text-muted">{{ profile.role }}</div>
+  </div>
+
+  <div class="mb-3">
+    <strong>Location</strong>
+    <div class="text-muted">{{ profile.location }}</div>
+  </div>
+
+  <div class="mb-3">
+    <strong>Member since</strong>
+    <div class="text-muted">{{ profile.joined }}</div>
+  </div>
+
+  <div>
+    <strong>About</strong>
+    <p class="text-muted">{{ profile.bio }}</p>
+  </div>
+</div>
+{% endblock %}

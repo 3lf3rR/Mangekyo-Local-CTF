@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row align-items-center">
+  <div class="col-lg-7">
+    <div class="card p-5 shadow-sm hero-card">
+      <h1 class="display-5 fw-bold mb-3">DocuShare</h1>
+      <p class="lead text-muted mb-4">Secure document storage and simple file access.</p>
+
+      <div class="d-flex flex-wrap gap-3">
+        <a href="{{ url_for('about') }}" class="btn btn-lg btn-contrast">About</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-lg btn-outline-contrast">Contact</a>
+        <a href="{{ url_for('profile') }}" class="btn btn-lg btn-contrast-outline">Profile</a>
+      </div>
+    </div>
+  </div>
+
+  <aside class="col-lg-5">
+    <div class="card p-4 shadow-sm">
+      <h6 class="mb-2">System</h6>
+      <p class="small text-muted mb-0">Service running.</p>
+    </div>
+  </aside>
+</div>
+{% endblock %}

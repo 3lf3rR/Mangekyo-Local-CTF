@@ -1,0 +1,175 @@
+/* ======================================================
+   DocuShare — Mid-tone, high-contrast green theme
+   Replace app/static/css/style.css entirely with this.
+   Then hard-refresh the browser (Ctrl+F5).
+   ====================================================== */
+
+:root{
+  --bg-top: #e6f7ec;     /* soft mint top */
+  --bg-bottom: #dff3e6;  /* soft mint bottom */
+  --nav-strong: #176d3b; /* medium-deep green for navbar */
+  --nav-muted:  #1f7f46; /* slightly lighter navbar */
+  --accent:     #2fa85b; /* button accent */
+  --card-bg:    #ffffff; /* card surface */
+  --text:       #0b2f1a; /* dark text for readability */
+  --muted:      #4b6b57; /* muted text */
+  --pre-bg:     #f6fff5; /* pre/code background */
+  --border:     rgba(11,47,26,0.08);
+  --card-radius: 0.7rem;
+  --shadow:     0 10px 30px rgba(11,47,26,0.04);
+}
+
+/* --- Page basics --- */
+html, body {
+  height: 100%;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container width */
+.container { max-width: 1100px; }
+
+/* --- Navbar --- */
+#topnav {
+  background: linear-gradient(90deg, var(--nav-strong), var(--nav-muted)) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 26px rgba(11,47,26,0.06);
+}
+
+#topnav .navbar-brand,
+#topnav .nav-link {
+  color: #ffffff !important;        /* white text on medium navbar */
+  font-weight: 600;
+}
+
+#topnav .nav-link:hover,
+#topnav .nav-link:focus {
+  color: #e6ffee !important;
+  text-decoration: none;
+}
+
+/* Toggler icon visibility */
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.16);
+}
+.navbar-toggler-icon {
+  filter: none;
+  background-size: 1.2em 1.2em;
+  opacity: 0.95;
+}
+
+/* --- Buttons --- */
+.btn-contrast {
+  background: linear-gradient(180deg, var(--accent), #13803a);
+  color: #fff;
+  border: none;
+  padding: 0.56rem 1rem;
+  border-radius: 0.55rem;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(11,47,26,0.08);
+}
+.btn-contrast:hover, .btn-contrast:focus {
+  background: linear-gradient(180deg, #2eb05a, #0f6d36);
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-outline-contrast {
+  background: transparent;
+  color: var(--nav-strong);
+  border: 1px solid rgba(11,47,26,0.12);
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+}
+.btn-outline-contrast:hover {
+  background: rgba(11,47,26,0.04);
+}
+
+/* Outline style used elsewhere */
+.btn-contrast-outline {
+  background: transparent;
+  color: var(--nav-strong);
+  border: 2px solid rgba(47,168,91,0.12);
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+.btn-contrast-outline:hover { background: rgba(47,168,91,0.06); }
+
+/* --- Cards / panels --- */
+.card {
+  background: var(--card-bg);
+  color: var(--text);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Hero card */
+.hero-card { border-radius: 1rem; padding: 2.2rem; }
+
+/* --- Typography --- */
+h1,h2,h3,h4,h5,h6 { color: var(--text); font-weight: 700; }
+.text-muted, .small { color: var(--muted) !important; }
+
+/* --- Links --- */
+a { color: var(--nav-strong); }
+a:hover, a:focus { color: var(--nav-muted); text-decoration: underline; }
+
+/* --- Lists / file items --- */
+.list-group-item {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid rgba(11,47,26,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ensure file text doesn't wrap awkwardly */
+.text-break { word-break: break-word; }
+
+/* Buttons inside lists */
+.list-group-item .btn { min-width: 64px; }
+
+/* --- Pre / code block --- */
+pre {
+  background: var(--pre-bg);
+  color: var(--text);
+  padding: 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(11,47,26,0.06);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* --- Footer / small text --- */
+footer .small, .card-footer, .small { color: var(--muted); }
+
+/* --- Accessibility / touch targets --- */
+.btn, .nav-link { transition: all 0.12s ease; }
+
+/* --- Responsive tweaks --- */
+@media (max-width: 576px) {
+  .hero-card { padding: 1.25rem; }
+  .btn-contrast, .btn-outline-contrast, .btn-contrast-outline {
+    width: 100%; display: block; text-align: center;
+  }
+}
+
+/* --- Defensive overrides: remove stray yellow/white conflicts --- */
+[style*="yellow"], .bg-yellow, .text-yellow, .yellow {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+/* Guarantee primary text is always visible */
+body, .container, .card, p, li, label, input, textarea {
+  color: var(--text) !important;
+  background: transparent;
+}

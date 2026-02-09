@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-3 shadow-sm">
+  <!-- show requested vs actual storage folder (if different) -->
+  <h2 class="h5 mb-1">{{ username }}</h2>
+  {% if requested and requested != username %}
+    <div class="small text-muted mb-2">Requested: {{ requested }}</div>
+  {% endif %}
+
+  {% if files %}
+    <ul class="list-group list-group-flush">
+      {% for f in files %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="text-break">{{ f }}</div>
+          <div class="btn-group">
+            <a href="{{ url_for('view_file', username=username, filename=f) }}" class="btn btn-sm btn-outline-contrast">View</a>
+            <a href="{{ url_for('get_file_by_username', username=username, filename=f) }}" class="btn btn-sm btn-outline-contrast">Raw</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted mb-0">No files found.</p>
+  {% endif %}
+</div>
+{% endblock %}
