@@ -1,4 +1,4 @@
-<img width="1645" height="395" alt="image" src="https://github.com/user-attachments/assets/f2f28ebc-e752-46ab-bc54-61a0f7db4c43" /><img width="565" height="573" alt="image" src="https://github.com/user-attachments/assets/f2acc988-a27e-42c3-9173-b540ee6a4dc8" />
+<img width="565" height="573" alt="image" src="https://github.com/user-attachments/assets/f2acc988-a27e-42c3-9173-b540ee6a4dc8" />
 
 # Challenge Name : Steg 1.0
 ## Difficulty : Easy
