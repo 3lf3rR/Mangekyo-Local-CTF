@@ -48,35 +48,7 @@ Trying normal input:
 
 The input is simply reflected back — no execution.
 
-At first glance, this might look like XSS or SSTI, but neither works here.
-
----
-
-## Source Code Analysis
-
-Relevant backend logic from `contact.php`:
-
-```php
-if (preg_match('/\A[0-9a-fA-F]{2,1024}\z/', $trimmed)) {
-    $decoded = hex2bin($trimmed);
-    if ($decoded !== false) {
-        shell_exec($decoded);
-    }
-}
-```
-
-### Key Observations
-
-- Only **hexadecimal input** is decoded
-- Decoded input is passed directly to `shell_exec`
-- Plain text is treated as harmless user content
-
-This means:
-
-> **Hex = execution**  
-> **Plain text = safe display**
-
----
+At first glance, this might look like XSS or SSTI, but neither works here. So , the next thing to check is Command Injection !!
 
 ## Step 1 — Failed Direct Command Injection
 
@@ -164,6 +136,33 @@ SecurinetsISTIC{c0mm4nd_inj3ct10n_fr_t00_risky}
 
 ---
 
+---
+
+## Source Code Analysis
+
+Relevant backend logic from `contact.php`:
+
+```php
+if (preg_match('/\A[0-9a-fA-F]{2,1024}\z/', $trimmed)) {
+    $decoded = hex2bin($trimmed);
+    if ($decoded !== false) {
+        shell_exec($decoded);
+    }
+}
+```
+
+### Key Observations
+
+- Only **hexadecimal input** is decoded
+- Decoded input is passed directly to `shell_exec`
+- Plain text is treated as harmless user content
+
+This means:
+
+> **Hex = execution**  
+> **Plain text = safe display**
+
+---
 ## Root Cause Analysis
 
 This vulnerability exists because:
@@ -196,4 +195,4 @@ This is a classic case of:
 
 ---
 
-Happy hacking 🚀  
+Happy hacking !  
