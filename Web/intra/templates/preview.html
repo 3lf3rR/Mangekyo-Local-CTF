@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>IntraPreview — Result</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <div class="logo">IntraPreview</div>
+        <div class="tagline">Preview result</div>
+      </header>
+
+      <main class="card">
+        <div class="row">
+          <a class="back" href="/">← Back</a>
+        </div>
+
+        <h1>Preview</h1>
+        <div class="kv">
+          <div><span class="k">URL</span><span class="v mono">{{ url }}</span></div>
+          <div><span class="k">Status</span><span class="v">{{ status }}</span></div>
+          <div><span class="k">Content-Type</span><span class="v mono">{{ content_type }}</span></div>
+        </div>
+
+        <h2>Body snippet</h2>
+        <pre class="snippet">{{ body }}</pre>
+
+        <div class="footer-note muted">
+          Showing first 2000 characters only.
+        </div>
+      </main>
+
+      <footer class="footer">
+        <span>© IntraPreview</span>
+        <span class="muted">Employees only</span>
+      </footer>
+    </div>
+  </body>
+</html>

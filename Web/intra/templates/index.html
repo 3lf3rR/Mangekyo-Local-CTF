@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>IntraPreview</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <div class="logo">IntraPreview</div>
+        <div class="tagline">Internal link preview service</div>
+      </header>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert">
+            {% for m in messages %}
+              <div>{{ m }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <main class="card">
+        <h1>Preview a link</h1>
+        <p class="muted">
+          Paste a URL and we'll fetch a short snippet.
+        </p>
+
+        <form method="post" class="form">
+          <input
+            name="url"
+            type="text"
+            placeholder="https://example.com/page"
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+          <button type="submit">Preview</button>
+        </form>
+      </main>
+
+      <footer class="footer">
+        <span>© IntraPreview</span>
+        <span class="muted">Employees only</span>
+      </footer>
+    </div>
+  </body>
+</html>
