@@ -36,7 +36,7 @@ The main page contains:
 - A single URL input
 - A *Preview* button
 
-![Home page](/Web/assets/home_intra.png)
+![Home page](home_intra.png)
 
 Since the backend fetches the provided URL, this strongly suggests **SSRF**.
 
@@ -52,7 +52,7 @@ http://127.0.0.1:5000/internal/flag
 
 Result:
 
-![Blocked request](/Web/assets/127_image.png)
+![Blocked request](127_image.png)
 
 The server responds with:
 
@@ -201,7 +201,7 @@ http://2130706433:5000/internal/flag
 
 Result:
 
-![Final exploit](/Web/assets/final_exploit.png)
+![Final exploit](final_exploit.png)
 
 The request is accepted and internally routed to `127.0.0.1`.
 
