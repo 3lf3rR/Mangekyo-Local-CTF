@@ -172,7 +172,6 @@ SecurinetsISTIC{b3rj0uli4_k3sa7_s47b1_x0rrrrrr}
 
 ## Why This Works (Source Code Explanation)
 
-Even though the source code is **not provided to players**, reviewing it explains everything.
 
 Cookie creation:
 
