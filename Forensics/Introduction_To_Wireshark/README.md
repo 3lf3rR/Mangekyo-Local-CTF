@@ -9,6 +9,7 @@
 Wireshark is the world’s most popular network protocol analyzer — a free, open-source tool that captures and analyzes network traffic in real time. Whether you’re an IT professional troubleshooting connectivity issues, a cybersecurity analyst hunting for threats, or a developer optimizing microservices, Wireshark is an indispensable tool in your arsenal.
 
 Available on Linux, macOS, and Windows, Wireshark supports multiple protocols including HTTP, TCP, UDP, DNS, and hundreds more. It transforms raw network packets into structured, readable data that helps you understand exactly what’s happening on your network.
+
 -------------------------------------------------------
 ## Solution
 - Open `Wireshark` and explore the Network Capture
