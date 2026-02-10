@@ -22,7 +22,7 @@ session, and access the protected `/admin` endpoint to retrieve the flag.
 > Like usual  
 > The flag is at `/admin`  
 
-![Challenge description](Web/assets/Biscuits_chall.png)
+![Challenge description](/Web/assets/Biscuits_chall.png)
 
 ---
 
