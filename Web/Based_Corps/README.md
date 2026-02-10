@@ -10,7 +10,7 @@
 
 ## Challenge Overview
 
-![Challenge banner](BasedCorps_chall.png)
+![Challenge banner](/Web/assets/BasedCorps_chall.png)
 
 This challenge demonstrates a **command injection vulnerability** hidden behind
 what looks like safe input handling.  
