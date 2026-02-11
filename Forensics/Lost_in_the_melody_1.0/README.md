@@ -17,7 +17,7 @@
 
 <img width="632" height="296" alt="image" src="https://github.com/user-attachments/assets/8386d349-7752-4db4-97d8-f014087dc813" />
 
-- then scroll down to see the output
+- Then scroll down to see the output
 
 <img width="710" height="175" alt="image" src="https://github.com/user-attachments/assets/2dd0f0ad-66fe-419d-8067-9bdb038a5ae2" />
 
