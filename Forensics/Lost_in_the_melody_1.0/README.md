@@ -21,7 +21,7 @@
 
 <img width="710" height="175" alt="image" src="https://github.com/user-attachments/assets/2dd0f0ad-66fe-419d-8067-9bdb038a5ae2" />
 
-### Deoded Text : `THIS IS THE DECODED TEXT : MORSE DECODING IS VERY NICE`
+### Deoded Text → `THIS IS THE DECODED TEXT : MORSE DECODING IS VERY NICE`
 
 And like that , You're Done :>
 
