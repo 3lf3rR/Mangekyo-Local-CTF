@@ -24,6 +24,6 @@ puts("ACCESS DENIED")                                       = 14
 Flag:
 
 ```
-Securinets{L1nK4g3_1s_1mp0rt4nt!!}
+SecurinetsISTIC{L1nK4g3_1s_1mp0rt4nt!!}
 ```
 
